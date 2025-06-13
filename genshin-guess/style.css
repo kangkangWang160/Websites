@@ -1,0 +1,274 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #111;
+  font-family: Arial, sans-serif;
+}
+.fullscreen {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #000;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.center-text {
+  color: #fff;
+  font-size: 2.2em;
+  letter-spacing: 2px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  animation: move-across 2s linear forwards;
+}
+@keyframes move-across {
+  from { left: 0; }
+  to { left: 50%; transform: translate(-50%, -50%); }
+}
+.game-ui {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.tower-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, #222 80%, #6cf 100%);
+  background-image: url('https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Domain_Tower.png');
+  background-size: cover;
+  background-position: center bottom;
+  opacity: 0.5;
+  z-index: 1;
+}
+.menu-buttons {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 24px;
+}
+.menu-buttons button {
+  padding: 16px 32px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 8px;
+  background: #6cf;
+  color: #222;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background 0.2s;
+}
+.menu-buttons button:hover {
+  background: #4ad;
+}
+.health-bar-container {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 28px;
+  background: #333;
+  border-radius: 16px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+#healthBar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #4caf50 80%, #e53935 100%);
+  border-radius: 16px;
+  transition: width 0.3s;
+}
+.health-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1em;
+  z-index: 3;
+  pointer-events: none;
+}
+.next-btn {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  margin: 0;
+  padding: 14px 36px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 8px;
+  background: #e53935;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background 0.2s;
+  z-index: 10;
+}
+.next-btn:hover {
+  background: #b71c1c;
+}
+.tower-img {
+  display: block;
+  margin: 32px auto 0 auto;
+  max-width: 320px;
+  width: 80vw;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+.level-bg-img {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 1;
+}
+.evil-dead-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('evil_dead_rise_monde_apartments-768x327.webp') center center/cover no-repeat;
+  opacity: 0.7;
+  z-index: 0 !important;
+  pointer-events: none;
+}
+#levelScreen {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+}
+#levelScreen > *:not(.evil-dead-bg) {
+  position: relative;
+  z-index: 1;
+}
+.tower-escape-text {
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  font-size: 2.2em;
+  color: #fff;
+  white-space: nowrap;
+  z-index: 2;
+  animation: drop-center 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+@keyframes drop-center {
+  from {
+    top: 0;
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.8);
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.danger-text {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%) scale(1);
+  color: #e53935;
+  font-size: 2em;
+  font-weight: bold;
+  opacity: 0.7;
+  z-index: 3;
+  animation: danger-grow 2.5s linear forwards;
+  animation-delay: 1.2s;
+}
+@keyframes danger-grow {
+  0% {
+    opacity: 0.2;
+    font-size: 1.2em;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  60% {
+    opacity: 0.8;
+    font-size: 2.2em;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    font-size: 2.8em;
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+}
+.bouncing-img {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  z-index: 101;
+  pointer-events: none;
+  image-rendering: auto;
+  will-change: transform, left, top;
+  transition: transform 0.1s linear;
+}
+#gamePromptScreen {
+  z-index: 300;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.prompt-box {
+  background: #222;
+  border-radius: 16px;
+  padding: 40px 32px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  text-align: center;
+  max-width: 350px;
+}
+.prompt-text {
+  color: #fff;
+  font-size: 1.2em;
+  margin-bottom: 32px;
+}
+.prompt-buttons {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+}
+.yes-btn, .no-btn {
+  padding: 12px 32px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.yes-btn {
+  background: #4caf50;
+  color: #fff;
+}
+.yes-btn:hover {
+  background: #388e3c;
+}
+.no-btn {
+  background: #e53935;
+  color: #fff;
+}
+.no-btn:hover {
+  background: #b71c1c;
+}

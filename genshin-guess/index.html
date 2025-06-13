@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tower Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="blackScreen" class="fullscreen">
+    <img class="bouncing-img" src="9f6e7ba31a87ccb9a7cc81930a61edf8.jpg" alt="Red Among Us">
+    <div class="center-text">Where am I?</div>
+    <button id="nextBtn" class="next-btn">Next</button>
+  </div>
+  <div id="towerScreen" class="fullscreen" style="display:none;">
+    <div class="center-text tower-escape-text">I need to escape</div>
+    <div class="center-text danger-text">he's coming....</div>
+    <img id="escapeZoomImg" src="maxresdefault.jpg" alt="Zoom Image" style="display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(0.2);z-index:20;transition:transform 2s cubic-bezier(0.23,1,0.32,1), opacity 0.5s;max-width:none;width:auto;height:auto;">
+    <button id="toGameBtn" class="next-btn">Next</button>
+  </div>
+  <div class="game-ui" style="display:none;">
+    <div id="continuePromptScreen" class="fullscreen" style="display:none;">
+      <div class="prompt-box">
+        <div class="prompt-text">Do you want to continue? It may result in certain death.</div>
+        <div class="prompt-buttons">
+          <button id="continueYesBtn" class="yes-btn">Yes</button>
+          <button id="continueNoBtn" class="no-btn">No</button>
+        </div>
+      </div>
+    </div>
+    <div id="flappyGameScreen" class="fullscreen" style="display:none;align-items:center;justify-content:center;"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
